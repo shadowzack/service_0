@@ -66,6 +66,17 @@ module.exports = (subject) => {
     topic.increment();
     topic.getAll();
 
+/*   you can check for cannot Incremented message
+    topic.increment();
+    topic.increment();
+    topic.increment();
+    topic.increment();
+    topic.increment();
+    topic.increment();
+    topic.increment();
+    topic.getAll();
+    topic.increment();
+    */
     topic.on(CONFIG.INC, (subject) => {
         console.log(`INC::: ${subject.topic}, Votes: ${subject.votes}`);
     });
