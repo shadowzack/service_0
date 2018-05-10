@@ -1,15 +1,44 @@
 var express = require('express'),
     app = express(),
     port = process.env.PORT || 8080,
-    topic = require('./modules/index');
+    poll = require('./modules');
 const CONFIG = require('./config').events;
 var Arr = [];
 
-for (let i = 0; i < 20; i++)
-    Arr.push(topic({
-        topic: `Topic # ${i}`,
-        votes: 0
-    })); //genrtaing topics 
+//two subjects with and against
+Arr.push(new poll({
+    topic: `with`,
+    votes: 0
+}));
+
+Arr.push(new poll({
+    topic: `against`,
+    votes: 0
+}));
+
+
+//do what ever you want
+Arr[0].increment();
+Arr[0].increment();
+Arr[0].getAll();
+Arr[0].reset();
+Arr[0].increment();
+Arr[0].increment();
+Arr[0].getAll();
+Arr[0].increment();
+Arr[0].getAll();
+for (let index = 0; index < 8; index++)
+    Arr[0].increment();
+Arr[0].getAll();
+Arr[0].increment();
+
+
+Arr[1].increment();
+Arr[1].getAll();
+Arr[1].reset();
+Arr[1].increment();
+Arr[1].getAll();
+
 
 app.get('/', (req, res) => {
     res.send(`<!DOCTYPE html>
